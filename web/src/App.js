@@ -17,14 +17,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           <ul>
             {
               teams.map(t => {
                 return(
                   <li>
-                    <img src={t.logoUrl} alt={t.mascot+" Logo"} /> {t.city} {t.mascot}
+                    <div><img src={t.logoUrl} alt={t.mascot+" Logo"} /></div> 
+                    <div>{t.city} {t.mascot}</div>
                   </li>
                 );
               })

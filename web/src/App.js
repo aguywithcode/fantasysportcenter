@@ -1,19 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import {faker} from '@fakerjs/faker';
 
 function App() {
-  var teams = [
-    {
-      logoUrl: "https://i.cdn.turner.com/nba/nba/.element/media/2.0/teamsites/bulls/reboot/resources/images/bullhead-1819.png",
-      city: "Chicago",
-      mascot: "Bulls",
-    },
-    {
-      logoUrl: "https://www.nba.com/grizzlies/sites/grizzlies/files/mg_playoffs_100x100_icon_0.png?",
-      city: "Memphis",
-      mascot: "Grizzlies",
-    },
-  ]
+  
+  var teams = [...Array(10).map(i => {
+
+    var mascot = faker.animal.type();
+
+    return {
+
+    logoUrl: faker.image.imageUrl(300,300, mascot, true),
+    city: faker.city(),
+    mascot: mascot
+   }
+
+  })
+
   return (
     <div className="App">
       <header className="App-header">

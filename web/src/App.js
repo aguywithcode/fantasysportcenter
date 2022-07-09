@@ -15,7 +15,8 @@ const teamList = [...Array(20)].map(element=>{
   return {
     city: faker.address.city(),
     mascot: mascot,
-    logoUrl: faker.image.imageUrl(300,300,mascot,true)
+    logoUrl: faker.image.imageUrl(300,300,mascot,true),
+    conference: faker.helpers.arrayElement(['Eastern', 'Western'])
   }
 })
 
@@ -27,7 +28,7 @@ function App() {
           teamList.map((team, idx)=>
             <div>
               <img src={team.logoUrl}/>
-             Team {idx+1} is in {team.city} it's mascot is {team.mascot}
+             Team {idx+1} is in {team.city} it's mascot is {team.mascot} it's in the {team.conference} conference  
              
 
             </div>)

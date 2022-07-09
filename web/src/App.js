@@ -1,16 +1,23 @@
 import './App.css';
-import {faker} from '@faker-js/faker';
+import {useEffect, useState} from 'react';
 import TeamList from './TeamList.js';
 
 function App() {
-  var teams = [...Array(5)].map(i => {
-    var mascot = faker.animal.type();
-    return {
-      logoUrl: faker.image.imageUrl(300, 300,mascot, true),
-      city: faker.address.city(),
-      mascot: mascot
-    }
-  });
+  const [teams, setTeams] = useState([]);
+
+  const fetchTeams = ()=>{
+    fetch("http://localhost:3000/teams", {mode:'cors'})
+      .then(res=>{
+        return res.json();
+      })
+      .then(data=>{
+        setTeams(data);
+      })
+  }
+
+  useEffect(()=>{
+    fetchTeams();
+  },[])
     return (
     <div className="App">
       <header className="App-header">

@@ -6,7 +6,7 @@ function App() {
   const [teams, setTeams] = useState([]);
 
   const fetchTeams = ()=>{
-    fetch("http://localhost:3000/teams", {mode:'cors'})
+    fetch("/teams", {mode:'cors'})
       .then(res=>{
         return res.json();
       })

@@ -5,14 +5,20 @@ import TeamList from './TeamList.js';
 function App() {
   const [teams, setTeams] = useState([]);
 
-  const fetchTeams = ()=>{
-    fetch("/teams", {mode:'cors'})
-      .then(res=>{
-        return res.json();
-      })
-      .then(data=>{
-        setTeams(data);
-      })
+//  const fetchTeams = ()=>{
+//    fetch("/teams", {mode:'cors'})
+//      .then(res=>{
+//        return res.json();
+//      })
+//      .then(data=>{
+//        setTeams(data);
+//      })
+//  }
+
+  const fetchTeams = async () => {
+    const res = await fetch('/teams');
+    const data = await res.json();
+    setTeams(data);
   }
 
   useEffect(()=>{

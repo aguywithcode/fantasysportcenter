@@ -1,5 +1,4 @@
 import './App.css';
-import { faker } from '@faker-js/faker';
 
 function TeamList(props) {
     const teams = props.teams;

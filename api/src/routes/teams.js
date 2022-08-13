@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   var teams = [...Array(5)].map(i => {
     var mascot = faker.animal.type();
     return {
-      logoUrl: faker.image.imageUrl(300, 300,mascot, true),
+      logoUrl: faker.image.imageUrl(100, 100,mascot, true),
       city: faker.address.city(),
       mascot: mascot
     }

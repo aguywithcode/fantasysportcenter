@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import App from './App';
+import Nav from './nav';
+import Players from './Players';
+import Teams from './Teams';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Nav/>
+
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="teams" element={<Teams />} />
+        <Route path="players" element={<Players />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

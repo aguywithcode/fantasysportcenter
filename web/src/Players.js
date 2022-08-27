@@ -1,23 +1,37 @@
-function Players() {
-    const player = {
-        HeadShotUrl: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630173.png",
-        FirstName : "JimBob",
-        LastName : "James",
-        PlayerNumber : 23,
-        Position : "Point Guard",
-        Height : 78,
-        College : "Duke"
+import PlayerList from "./PlayerList";
+import {useEffect, useState} from 'react';
+import {faker} from '@faker-js/faker';
 
+function Players() {
+    const [players, setPlayers] = useState([]);
+    
+    const fetchPlayers = async () => {
+
+        setPlayers([...Array(5)].map(i => {
+            return {
+                HeadShotUrl: faker.internet.avatar(),
+                FirstName: faker.name.firstName(),
+                LastName: faker.name.lastName(),
+                PlayerNumber: faker.datatype.number({ max: 99 }),
+                Position: faker.helpers.arrayElement(
+                    [
+                        'point guard',
+                        'shooting guard',
+                        'center',
+                        'small forward',
+                        'power forward'
+                    ]),
+                Height: faker.datatype.number({ min: 65, max: 84 }),
+                College: faker.company.companyName()
+            }
+        }));
     }
+    useEffect(() => {
+        fetchPlayers();
+    }, [])
+    
     return (
-        <div>
-            <img width={75} src={player.HeadShotUrl} alt={`${player.FirstName} ${player.LastName} headshot`}></img>
-            <div>{`Name: ${player.FirstName} ${player.LastName}`}</div>
-            <div>{`Player Number: ${player.PlayerNumber}`}</div>
-            <div>{`Position: ${player.Position}`}</div>
-            <div>{`Height: ${Math.floor(player.Height/12)} ft. ${player.Height%12} in.`}</div>
-            <div>{`College: ${player.College}`}</div>
-        </div>
+       <PlayerList players = {players}/>
     )
 }
 

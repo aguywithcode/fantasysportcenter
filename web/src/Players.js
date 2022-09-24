@@ -1,6 +1,5 @@
 import PlayerList from "./PlayerList";
 import {useEffect, useState} from 'react';
-import {faker} from '@faker-js/faker';
 
 function Players() {
     const [players, setPlayers] = useState([]);

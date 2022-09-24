@@ -1,20 +1,22 @@
+import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/esm/Row';
 import './App.css';
+import TeamCard from './TeamCard';
 
 function TeamList(props) {
     const teams = props.teams;
     return (
-        <ul>
-            {
-            teams.map(t => {
-                return (
-                    <li>
-                        <div><img src={t.logoUrl} alt={t.mascot + " Logo"} /></div>
-                        <div>{t.city} {t.mascot}</div>
-                    </li>
-                );
-            })
-            }
-        </ul>
+        <Container>
+            <Row>
+                {
+                    teams.map(t => {
+                        return (
+                            <TeamCard team={t} />
+                        );
+                    })
+                }
+            </Row>
+        </Container>
     );
 }
 

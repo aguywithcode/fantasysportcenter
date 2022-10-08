@@ -1,19 +1,17 @@
 import express from 'express';
-import {faker} from '@faker-js/faker';
+import {MongoClient, ServerApiVersion} from 'mongodb';
 var router = express.Router();
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var teams = [...Array(5)].map(i => {
-    var mascot = faker.animal.type();
-    return {
-      logoUrl: faker.image.imageUrl(100, 100,mascot, true),
-      city: faker.address.city(),
-      mascot: mascot
-    }
-  });
+router.get('/', async function(req, res, next) {
+  const uri = "<mongo-connection-string>";
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+  var connection = await client.connect();
+  var collection = connection.db("FSC-Dev").collection("Teams");
+  var teams = await collection.find().toArray();
   res.send(teams);
+  client.close;
 });
 
 export default router;

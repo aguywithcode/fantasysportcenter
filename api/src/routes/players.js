@@ -1,29 +1,15 @@
 import express from 'express';
-import {faker} from '@faker-js/faker';
+import {MongoClient, ServerApiVersion} from 'mongodb';
 
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-    var players = [...Array(5)].map(i => {
-            return {
-                HeadShotUrl: faker.internet.avatar(),
-                FirstName: faker.name.firstName(),
-                LastName: faker.name.lastName(),
-                PlayerNumber: faker.datatype.number({ max: 99 }),
-                Position: faker.helpers.arrayElement(
-                    [
-                        'point guard',
-                        'shooting guard',
-                        'center',
-                        'small forward',
-                        'power forward'
-                    ]),
-                Height: faker.datatype.number({ min: 65, max: 84 }),
-                College: faker.company.companyName()
-            }
-        })
-
-  res.send(players);
+router.get('/', async function(req, res, next) {
+    var uri = process.env.MONGODB_URI;
+    var client = new MongoClient(uri,{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    var connection = await client.connect();
+    var collection = connection.db("FSC-Dev").collection("Players");
+    var players = await collection.find().toArray();
+    res.send(players);
 });
 
 export default router;

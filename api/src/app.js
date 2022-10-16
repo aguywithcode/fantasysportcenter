@@ -6,6 +6,8 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import teamsRouter from './routes/teams';
 import playersRouter from './routes/players';
+import dotenv from 'dotenv';
+dotenv.config();
 
 var app = express();
 //app.use(cors());

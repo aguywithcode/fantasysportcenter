@@ -9,11 +9,7 @@ function TeamList(props) {
         <Container>
             <Row>
                 {
-                    teams.map(t => {
-                        return (
-                            <TeamCard team={t} />
-                        );
-                    })
+                    teams.map((element)=><TeamCard team={element}/>)
                 }
             </Row>
         </Container>

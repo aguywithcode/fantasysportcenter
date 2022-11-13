@@ -1,6 +1,7 @@
 import './App.css';
 import {useEffect, useState} from 'react';
 import TeamList from './TeamList.js';
+import {Container,Row, Col } from 'react-bootstrap';
 
 function Teams() {
     const [teams, setTeams] = useState([]);
@@ -21,13 +22,22 @@ function Teams() {
     }, [])
 
     return (
-        <div className="Team">
-            <header className="Team-header">
-            </header>
-            <p>
-                <TeamList teams={teams} />
-            </p>
-        </div>
+        <Container  className="Team">
+            <Row>
+                <Col/>
+                <Col xs={9}>
+                    <header className="Team-header">
+                        Fantasy SportsCenter Teams
+                    </header>
+                </Col>
+            </Row>
+            <Row>
+                <Col />
+                <Col xs={9}>
+                    <TeamList teams={teams} />
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

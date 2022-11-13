@@ -13,6 +13,10 @@
   }
 }
 
+
+.Team-header{
+  font-size:2em; 
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

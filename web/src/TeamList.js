@@ -9,7 +9,16 @@ function TeamList(props) {
         <Container>
             <Row>
                 {
-                    teams.map((element)=><TeamCard team={element}/>)
+                    teams.sort((a,b)=>{
+                        if(a.Division>b.Division){
+                            return 1;
+                        }
+                        if(a.Division<b.Division){
+                            return -1;
+                        }
+                        return 0;
+                    })
+                        .map((element) => <TeamCard team={element} />)
                 }
             </Row>
         </Container>

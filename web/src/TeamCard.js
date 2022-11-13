@@ -4,9 +4,10 @@ function TeamCard(props){
     const t = props.team;
     return(
         <Card style={{ width: '18rem' }}>
-            <Card.Img src={t.logoUrl} alt={t.mascot + " Logo"}/>
+            <Card.Img src={t.LogoUrl} alt={t.Name + " Logo"}/>
             <Card.Body>
-                <Card.Title>{t.city} {t.mascot}</Card.Title>
+                <Card.Title>{t.City} {t.Name}</Card.Title>
+                {t.Division}
             </Card.Body>
         </Card>
     )

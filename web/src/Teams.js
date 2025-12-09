@@ -8,8 +8,9 @@ function Teams() {
 
     const fetchTeams = async () => {
         try {
-            const res = await fetch('/teams');
+            const res = await fetch('/api/teams');
             const data = await res.json();
+            console.log("Fetched teams data:", data);
             setTeams(data);
         }
         catch (error) {

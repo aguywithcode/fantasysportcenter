@@ -11,7 +11,7 @@ router.get('/', async function(req, res, next) {
   var collection = connection.db("FSC-Dev").collection("Teams");
   var teams = await collection.find().toArray();
   res.send(teams);
-  client.close;
+  client.close();
 });
 
 export default router;

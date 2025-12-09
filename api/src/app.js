@@ -11,6 +11,12 @@ dotenv.config();
 
 var app = express();
 //app.use(cors());
+// Log all incoming request headers for debugging
+app.use((req, res, next) => {
+	console.log('Incoming request:', req.method, req.url);
+	console.log('Headers:', req.headers);
+	next();
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -18,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
-app.use('/teams', teamsRouter);
+app.use('/api/teams', teamsRouter);
 app.use('/players', playersRouter);
 
 module.exports = app;

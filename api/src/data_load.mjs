@@ -4,14 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const uri = process.env.MONGODB_URI;
+console.log("MongoDB URI:", uri);
 const client = new MongoClient(uri);
 
 
 const fetchTeams = async () => {
     try {
         //grab the teams
-        const result = await fetch('https://api.sportsdata.io/v3/nba/scores/json/teams?key=fabdf203fca64e189c59ee79e632018b');
+        const result = await fetch('https://api.sportsdata.io/v3/nba/scores/json/teams?key=f59bfd85275b4a83a24a5301b706a70d');
         const data = await result.json();
+        console.log("Fetched teams data:", data);
         //map to our data format
         const teams = data.map(team=>{
             return {
